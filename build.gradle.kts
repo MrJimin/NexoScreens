@@ -22,7 +22,11 @@ dependencies {
     compileOnly("io.papermc.paper:paper-api:${rootProject.properties["paper_version"]}-R0.1-SNAPSHOT")
     compileOnly("com.nexomc:nexo:${rootProject.properties["nexo_version"]}") { exclude("*") }
 
+<<<<<<< HEAD
     compileOnly("com.comphenix.protocol","ProtocolLib","5.3.0") // ProtocolLib
+=======
+    compileOnly("net.dmulloy2:ProtocolLib:5.4.0")
+>>>>>>> 027534e (fixed an issue with command execution; updated the protocolLib dependency)
     compileOnly("me.clip","placeholderapi","2.11.6") // PlaceholderAPI
 
     implementation("org.bstats","bstats-bukkit","3.0.2") // bStats

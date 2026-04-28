@@ -28,10 +28,7 @@ class NexoScreens : JavaPlugin() {
         server.pluginManager.registerEvents(eventListener, this)
         server.scheduler.runTaskTimer(this, screenManager::tickScreens, 0, 1)
 
-        getCommand("nexoscreens")?.let {
-            it.setExecutor(commandHandler)
-            it.tabCompleter = commandHandler
-        } ?: logger.warning("Command 'nexoscreens' not found in plugin.yml!")
+        server.commandMap.register("nexoscreens", commandHandler)
 
         screenManager.reload()
     }
