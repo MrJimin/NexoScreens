@@ -7,15 +7,18 @@ import net.kyori.adventure.text.format.TextColor
 import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.Bukkit
 import org.bukkit.command.Command
-import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
-import org.bukkit.command.TabCompleter
 import org.bukkit.entity.Player
 
-class CommandHandler(private val screenManager: ScreenManager) : CommandExecutor, TabCompleter {
+class CommandHandler(private val screenManager: ScreenManager) : Command("nexoscreens") {
 
-    override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
+    init {
+        aliases = listOf("ns")
+        description = "NexoScreens main command"
+        permission = "nexoscreens.command"
+    }
 
+    override fun execute(sender: CommandSender, commandLabel: String, args: Array<out String>): Boolean {
         if (sender is Player && !sender.hasPermission("nexoscreens.command")) return false
 
         if (args.isEmpty()) {
@@ -65,7 +68,7 @@ class CommandHandler(private val screenManager: ScreenManager) : CommandExecutor
         return false
     }
 
-    override fun onTabComplete(sender: CommandSender, command: Command, alias: String, args: Array<out String>): MutableList<String> {
+    override fun tabComplete(sender: CommandSender, alias: String, args: Array<out String>): MutableList<String> {
         val list = mutableListOf<String>()
         when (args.size) {
             1 -> list.addAll(listOf("show", "reload"))

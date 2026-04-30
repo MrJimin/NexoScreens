@@ -1,7 +1,7 @@
 package com.github.mrjimin.nexoscreens.manager
 
 import com.nexomc.nexo.NexoPlugin
-import com.nexomc.nexo.fonts.Glyph
+import com.nexomc.nexo.glyphs.Glyph
 import com.github.mrjimin.nexoscreens.util.CommandUtils
 import com.github.mrjimin.nexoscreens.util.ProtocolLib
 import com.github.mrjimin.nexoscreens.util.toMMComponent
@@ -55,7 +55,10 @@ data class Screen(
     private fun createTitle(color: TextColor, text: Component, times: Title.Times): Title {
         glyph = glyph ?: NexoPlugin.instance().fontManager().glyphFromID("nexoscreens_$id")
                 ?: throw IllegalStateException("Glyph not found: nexoscreens_$id")
-        return Title.title(text, Component.text(glyph!!.character()).font(glyph!!.font()).color(color), times)
+
+        val glyphComponent = glyph!!.glyphComponent().color(color)
+
+        return Title.title(text, glyphComponent, times)
     }
 
     companion object {
